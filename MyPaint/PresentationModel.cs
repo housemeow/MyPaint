@@ -13,6 +13,7 @@ namespace MyPaint
         public delegate void StateChangeHandler();
         public event StateChangeHandler _stateChanged;
 
+        //constructor of presentation model
         public PresentationModel(PaintModel paintModel)
         {
             PaintModel = paintModel;
@@ -46,9 +47,10 @@ namespace MyPaint
         }
 
         //a method for one click adding a shape fixed width and height = 50
-        public void MouseClick(Point point)
+        public void ClickMouse(Point point)
         {
-            Point newPoint = new Point(point.X + 50, point.Y + 50);
+            const int WIDTH = 50;
+            Point newPoint = new Point(point.X + WIDTH, point.Y + WIDTH);
             Shape shape = null;
             switch (NowDrawMode)
             {
@@ -75,7 +77,7 @@ namespace MyPaint
             return PaintModel.Shapes;
         }
 
-        //state changed
+        //state changed event trigger
         private void ChangeState()
         {
             if (_stateChanged != null)

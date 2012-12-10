@@ -57,7 +57,7 @@ namespace UnitTestLibrary
             await AsyncMethod.ExecuteOnUIThread(() =>
             {
                 _pModel.ClickEllipseButton();
-                _pModel.MouseClick(new Point(100, 100));
+                _pModel.ClickMouse(new Point(100, 100));
                 List<Shape> shapes = _pModel.GetShapes();
                 Assert.AreEqual(1, shapes.Count);
                 _pModel.ClickClearButton();
@@ -72,7 +72,7 @@ namespace UnitTestLibrary
             {
                 Point point = new Point(100, 100);
                 _pModel.NowDrawMode = PresentationModelProperty.DrawMode.Ellipse;
-                _pModel.MouseClick(point);
+                _pModel.ClickMouse(point);
                 PaintModel paintModel = _pModel.PaintModel;
                 List<Shape> shapes = paintModel.Shapes;
                 Assert.AreEqual(1, shapes.Count);

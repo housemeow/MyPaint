@@ -110,6 +110,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewClass.cs" />
     <Compile Include="PaintModel.cs" />
     <Compile Include="PresentationModel.cs" />
     <Compile Include="PresentationModelProperty.cs" />

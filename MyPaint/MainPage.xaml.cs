@@ -37,15 +37,6 @@ namespace MyPaint
             RefreshState();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.  The Parameter
-        /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
-
         //click close button and exit the application
         private void ClickButtonClose(object sender, RoutedEventArgs e)
         {
@@ -60,7 +51,7 @@ namespace MyPaint
         }
 
         //refresh presentation state
-        void RefreshState()
+        private void RefreshState()
         {
             _buttonPointer.IsEnabled = _pModel.IsPointerButtonEnable;
             _buttonEllipse.IsEnabled = _pModel.IsEllipseButtonEnable;
@@ -68,7 +59,7 @@ namespace MyPaint
         }
 
         //model change and refresh canvas
-        void RefreshCanvas()
+        private void RefreshCanvas()
         {
             //創造一個矩形範圍
             RectangleGeometry myRectangleGeometry = new RectangleGeometry();
@@ -107,7 +98,7 @@ namespace MyPaint
         {
             PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
             Point point = pointerPoint.Position;
-            _pModel.MouseClick(point);
+            _pModel.ClickMouse(point);
         }
     }
 }

@@ -28,11 +28,11 @@ namespace UnitTestLibrary
         {
             await AsyncMethod.ExecuteOnUIThread(() =>
             {
-                Assert.AreEqual(0, _model.Shapes.Count);
                 Line line = new Line();
                 _model.AddShape(line);
-                Assert.AreEqual(1, _model.Shapes.Count);
-                Assert.AreEqual(line, _model.Shapes[0]);
+                List<Shape> shapes = _model.Shapes;
+                Assert.AreEqual(1, shapes.Count);
+                Assert.AreEqual(line, shapes[0]);
             });
         }
 
@@ -54,9 +54,10 @@ namespace UnitTestLibrary
             await AsyncMethod.ExecuteOnUIThread(() =>
             {
                 _model.AddShape(new Line());
-                Assert.AreEqual(1, _model.Shapes.Count);
+                List<Shape> shapes = _model.Shapes;
+                Assert.AreEqual(1, shapes.Count);
                 _model.Clear();
-                Assert.AreEqual(0, _model.Shapes.Count);
+                Assert.AreEqual(0, shapes.Count);
             });
         }
 

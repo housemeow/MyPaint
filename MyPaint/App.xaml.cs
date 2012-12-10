@@ -42,7 +42,6 @@ namespace MyPaint
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -58,7 +57,6 @@ namespace MyPaint
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
-
             if (rootFrame.Content == null)
             {
                 // When the navigation stack isn't restored navigate to the first page,

@@ -6,24 +6,28 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MyPaint;
 using Windows.UI.Xaml.Shapes;
 using Windows.Foundation;
+using System.Threading.Tasks;
 
 namespace UnitTestLibrary
 {
     [TestClass]
-    class ShapeFactoryTest
+    public class ShapeFactoryTest
     {
         [TestMethod]
-        public void TestShapeFactoryGetShape()
+        public async Task TestShapeFactoryGetShape()
         {
-            Point startPoint = new Point(0, 100);
-            Point endPoint = new Point(100, 100);
-            Shape shape;
-            shape = ShapeFactory.GetShape(PaintModel.ShapeType.Ellipse, startPoint, endPoint);
-            Assert.AreEqual(typeof(Ellipse), shape.GetType());
-            shape = ShapeFactory.GetShape(PaintModel.ShapeType.Line, startPoint, endPoint);
-            Assert.AreEqual(typeof(Line), shape.GetType());
-            shape = ShapeFactory.GetShape(PaintModel.ShapeType.Rectangle, startPoint, endPoint);
-            Assert.AreEqual(typeof(Rectangle), shape.GetType());
+            await AsyncMethod.ExecuteOnUIThread(() =>
+            {
+                Point startPoint = new Point(0, 100);
+                Point endPoint = new Point(100, 100);
+                Shape shape;
+                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Ellipse, startPoint, endPoint);
+                Assert.AreEqual(typeof(Ellipse), shape.GetType());
+                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Line, startPoint, endPoint);
+                Assert.AreEqual(typeof(Line), shape.GetType());
+                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Rectangle, startPoint, endPoint);
+                Assert.AreEqual(typeof(Rectangle), shape.GetType());
+            });
         }
     }
 }
