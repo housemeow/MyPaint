@@ -9,7 +9,7 @@
 
     <Grid x:Name="_grid" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
-        <Canvas x:Name="_canvas" Margin="90,200,90,90" Background="#FFE7E71D" PointerReleased="ReleaseCanvasPointe"/>
+        <Canvas x:Name="_canvas" Margin="90,200,90,90" Background="#FFE7E71D" PointerReleased="ReleasePointerOnCanvas"/>
         <Button x:Name="_buttonClose" Content="X" HorizontalAlignment="Left" Margin="68,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" FontSize="25" Click="ClickButtonClose" Style="{StaticResource AppBarButtonStyle}"/>
         <TextBlock x:Name="_textBlockTitle" HorizontalAlignment="Left" Margin="163,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="238" FontSize="50">
         	<Run Text="MyPaint"/>

@@ -94,7 +94,7 @@ namespace MyPaint
         }
 
         //release point
-        private void ReleaseCanvasPointe(object sender, PointerRoutedEventArgs e)
+        private void ReleasePointerOnCanvas(object sender, PointerRoutedEventArgs e)
         {
             PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
             Point point = pointerPoint.Position;

@@ -107,15 +107,18 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AsyncMethod.cs" />
+    <Compile Include="ExceptionGraphis.cs" />
+    <Compile Include="IGraphics.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewClass.cs" />
+    <Compile Include="MockGraphics.cs" />
     <Compile Include="PaintModel.cs" />
     <Compile Include="PresentationModel.cs" />
     <Compile Include="PresentationModelProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeFactory.cs" />
+    <Compile Include="WindowsStoreGraphics.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
