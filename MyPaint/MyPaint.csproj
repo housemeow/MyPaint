@@ -113,10 +113,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MockGraphics.cs" />
+    <Compile Include="MyEllipse.cs" />
     <Compile Include="PaintModel.cs" />
     <Compile Include="PresentationModel.cs" />
     <Compile Include="PresentationModelProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MyShape.cs" />
+    <Compile Include="Rectangle.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="WindowsStoreGraphics.cs" />
   </ItemGroup>
