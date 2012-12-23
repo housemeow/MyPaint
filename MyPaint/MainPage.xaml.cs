@@ -65,12 +65,8 @@ namespace MyPaint
             myRectangleGeometry.Rect = new Rect(0, 0, _canvas.ActualWidth, _canvas.ActualHeight);
             //畫布超出矩形大小的都會被截掉
             _canvas.Clip = myRectangleGeometry;
-            _canvas.Children.Clear();
-            List<Shape> shapes = _pModel.GetShapes();
-            foreach (Shape shape in shapes)
-            {
-                _canvas.Children.Add(shape);
-            }
+            IGraphics graphics = new WindowsStoreGraphics(_canvas);
+            _pModel.DrawShapes(graphics);
         }
 
         //click ellipse button
@@ -96,19 +92,26 @@ namespace MyPaint
         {
             PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
             Point point = pointerPoint.Position;
-            _pModel.ClickMouse(point);
+            //_pModel.ClickMouse(point);
+            _pModel.ReleasePointer(point);
             _textBlockTitle.Text = "ReleasePointerOnCanvas";
         }
 
         //move pointer on canvas
         private void MovePointerOnCanvas(object sender, PointerRoutedEventArgs e)
         {
+            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
+            Point point = pointerPoint.Position;
+            _pModel.MovePointer(point);
             _textBlockTitle.Text = "MovePointerOnCanvas";
         }
 
         //press pointer on canvas
         private void PressPointerOnCanvas(object sender, PointerRoutedEventArgs e)
         {
+            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
+            Point point = pointerPoint.Position;
+            _pModel.PressPointer(point);
             _textBlockTitle.Text = "PressPointerOnCanvas";
         }
     }

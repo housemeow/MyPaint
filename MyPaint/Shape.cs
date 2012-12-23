@@ -7,12 +7,12 @@ using Windows.Foundation;
 
 namespace MyPaint
 {
-    public class MyShape
+    public class Shape
     {
         private Point _firstPoint, _secondPoint;
 
         //constructor of shape
-        public MyShape()
+        public Shape()
         {
             _firstPoint = _secondPoint = new Point(0, 0);
         }

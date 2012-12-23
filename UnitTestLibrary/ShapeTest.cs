@@ -15,7 +15,7 @@ namespace UnitTestLibrary
         [TestMethod]
         public void TestSetPoint()
         {
-            MyShape myShape = new MyShape();
+            Shape myShape = new Shape();
             myShape.SetPoints(new Point(20, 30), new Point(30, 40));
             Assert.AreEqual(20, myShape.TopLeftPoint.X);
             Assert.AreEqual(30, myShape.TopLeftPoint.Y);
@@ -26,7 +26,7 @@ namespace UnitTestLibrary
         [TestMethod]
         public void TestTopLeftPoint()
         {
-            MyShape myShape = new MyShape();
+            Shape myShape = new Shape();
             myShape.SetPoints(new Point(20, 30), new Point(30, 40));
             Assert.AreEqual(20, myShape.TopLeftPoint.X);
             Assert.AreEqual(30, myShape.TopLeftPoint.Y);
@@ -44,7 +44,7 @@ namespace UnitTestLibrary
         [TestMethod]
         public void TestBottomRightPoint()
         {
-            MyShape myShape = new MyShape();
+            Shape myShape = new Shape();
             myShape.SetPoints(new Point(20, 30), new Point(30, 40));
             Assert.AreEqual(30, myShape.BottomRightPoint.X);
             Assert.AreEqual(40, myShape.BottomRightPoint.Y);

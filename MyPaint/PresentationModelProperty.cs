@@ -8,15 +8,6 @@ namespace MyPaint
 {
     public class PresentationModelProperty
     {
-        //a enumeration about draw mode
-        public enum DrawMode
-        {
-            None,
-            Pointer,
-            Ellipse,
-            Rectangle
-        }
-
         //presentation model property constructor.
         public PresentationModelProperty()
         {
@@ -24,7 +15,6 @@ namespace MyPaint
             IsEllipseButtonEnable = true;
             IsRectangleButtonEnable = true;
             IsDrawing = false;
-            NowDrawMode = DrawMode.Pointer;
         }
 
         public bool IsPointerButtonEnable
@@ -51,12 +41,6 @@ namespace MyPaint
             set;
         }
 
-        public DrawMode NowDrawMode
-        {
-            get;
-            set;
-        }
-
         public PaintModel PaintModel
         {
             get;
@@ -69,7 +53,6 @@ namespace MyPaint
             IsPointerButtonEnable = true;
             IsEllipseButtonEnable = true;
             IsRectangleButtonEnable = true;
-            NowDrawMode = DrawMode.None;
         }
     }
 }

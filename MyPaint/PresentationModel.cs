@@ -15,9 +15,13 @@ namespace MyPaint
         public delegate void ModelChangeHandler();
         public event ModelChangeHandler _modelChanged;
 
+        State _state;
+
         //model changed event
-        public void ChangeModel() {
-            if (_modelChanged != null) {
+        public void ChangeModel()
+        {
+            if (_modelChanged != null)
+            {
                 _modelChanged();
             }
         }
@@ -27,6 +31,25 @@ namespace MyPaint
         {
             PaintModel = paintModel;
             paintModel._propertyChanged += ChangeModel;
+            _state = new PointerState(this);
+        }
+        
+        //press pointer
+        public void PressPointer(Point point)
+        {
+            _state.TouchDown(point);
+        }
+
+        //move pointer
+        public void MovePointer(Point point)
+        {
+            _state.TouchMove(point);
+        }
+
+        //release pointer
+        public void ReleasePointer(Point point)
+        {
+            _state.TouchUp(point);
         }
 
         //disable all buttons and using pointer mode
@@ -34,7 +57,7 @@ namespace MyPaint
         {
             EnableButtons();
             IsPointerButtonEnable = false;
-            NowDrawMode = DrawMode.Pointer;
+            _state = new PointerState(this);
             ChangeState();
         }
 
@@ -43,7 +66,9 @@ namespace MyPaint
         {
             EnableButtons();
             IsEllipseButtonEnable = false;
-            NowDrawMode = DrawMode.Ellipse;
+            DrawState drawState = new DrawState(this);
+            drawState.ShapeEnum = MyPaint.PaintModel.ShapeEnum.Ellipse;
+            _state = drawState;
             ChangeState();
         }
 
@@ -52,33 +77,36 @@ namespace MyPaint
         {
             EnableButtons();
             IsRectangleButtonEnable = false;
-            NowDrawMode = DrawMode.Rectangle;
+            DrawState drawState = new DrawState(this);
+            drawState.ShapeEnum = MyPaint.PaintModel.ShapeEnum.Rectangle;
+            _state = drawState;
             ChangeState();
         }
 
         //a method for one click adding a shape fixed width and height = 50
         public void ClickMouse(Point point)
         {
-            const int WIDTH = 50;
-            Point newPoint = new Point(point.X + WIDTH, point.Y + WIDTH);
-            Shape shape = null;
-            switch (NowDrawMode)
-            {
-                case DrawMode.None:
-                    break;
-                case DrawMode.Pointer:
-                    break;
-                case DrawMode.Ellipse:
-                    shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse, point, newPoint);
-                    PaintModel.AddShape(shape);
-                    break;
-                case DrawMode.Rectangle:
-                    shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle, point, newPoint);
-                    PaintModel.AddShape(shape);
-                    break;
-                default:
-                    break;
-            }
+
+            //const int WIDTH = 50;
+            //Point newPoint = new Point(point.X + WIDTH, point.Y + WIDTH);
+            //Shape shape = null;
+            //switch (NowDrawMode)
+            //{
+            //    case DrawMode.None:
+            //        break;
+            //    case DrawMode.Pointer:
+            //        break;
+            //    case DrawMode.Ellipse:
+            //        shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse, point, newPoint);
+            //        PaintModel.AddShape(shape);
+            //        break;
+            //    case DrawMode.Rectangle:
+            //        shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle, point, newPoint);
+            //        PaintModel.AddShape(shape);
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         //get shapes from paint model
@@ -136,6 +164,12 @@ namespace MyPaint
         public void StopResizeShape(Point point)
         {
             PaintModel.StopResizeShape(point);
+        }
+
+        //draw all shapes
+        public void DrawShapes(IGraphics graphics)
+        {
+            PaintModel.DrawShapes(graphics);
         }
     }
 }

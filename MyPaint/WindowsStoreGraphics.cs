@@ -22,7 +22,7 @@ namespace MyPaint
         //draw a ellipse using windows store graphics
         protected override void DoDrawEllipse(Point topLeftPoint, Point bottomRightPoint)
         {
-            Ellipse ellipse = new Ellipse();
+            Windows.UI.Xaml.Shapes.Ellipse ellipse = new Windows.UI.Xaml.Shapes.Ellipse();
             ellipse.Fill = new SolidColorBrush(Colors.Blue);
             ellipse.Width = bottomRightPoint.X - topLeftPoint.X;
             ellipse.Height = bottomRightPoint.Y - topLeftPoint.Y;
@@ -34,7 +34,7 @@ namespace MyPaint
         //draw a rectangle using windows store graphics
         protected override void DoDrawRectangle(Point topLeftPoint, Point bottomRightPoint)
         {
-            Rectangle rectangle = new Rectangle();
+            Windows.UI.Xaml.Shapes.Rectangle rectangle = new Windows.UI.Xaml.Shapes.Rectangle();
             rectangle.Fill = new SolidColorBrush(Colors.Green);
             rectangle.Width = bottomRightPoint.X - topLeftPoint.X;
             rectangle.Height = bottomRightPoint.Y - topLeftPoint.Y;
@@ -46,7 +46,7 @@ namespace MyPaint
         //draw a border using windows store graphics
         protected override void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint)
         {
-            Rectangle rectangle = new Rectangle();
+            Windows.UI.Xaml.Shapes.Rectangle rectangle = new Windows.UI.Xaml.Shapes.Rectangle();
             rectangle.Width = bottomRightPoint.X - topLeftPoint.X;
             rectangle.Height = bottomRightPoint.Y - topLeftPoint.Y;
             rectangle.StrokeThickness = 2;

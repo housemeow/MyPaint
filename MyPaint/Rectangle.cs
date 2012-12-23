@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyPaint
 {
-    class MyRectangle : MyShape
+    class Rectangle : Shape
     {
         //rectangle draw
         protected override void DoDrawShape(IGraphics graphics)
