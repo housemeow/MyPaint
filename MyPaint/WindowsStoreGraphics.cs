@@ -42,5 +42,19 @@ namespace MyPaint
             Canvas.SetTop(rectangle, topLeftPoint.Y);
             _canvas.Children.Add(rectangle);
         }
+
+        //draw a border using windows store graphics
+        protected override void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint)
+        {
+            Rectangle rectangle = new Rectangle();
+            rectangle.Width = bottomRightPoint.X - topLeftPoint.X;
+            rectangle.Height = bottomRightPoint.Y - topLeftPoint.Y;
+            rectangle.StrokeThickness = 2;
+            rectangle.Stroke = new SolidColorBrush(Colors.Black);
+            Canvas.SetLeft(rectangle, topLeftPoint.X);
+            Canvas.SetTop(rectangle, topLeftPoint.Y);
+            _canvas.Children.Add(rectangle);
+        }
+
     }
 }

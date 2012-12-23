@@ -9,7 +9,7 @@ namespace MyPaint
     class MyRectangle : MyShape
     {
         //rectangle draw
-        public override void DrawShape(IGraphics graphics)
+        protected override void DoDrawShape(IGraphics graphics)
         {
             graphics.DrawRectangle(TopLeftPoint, BottomRightPoint);
         }

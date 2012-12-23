@@ -9,7 +9,7 @@ namespace MyPaint
     class MyEllipse : MyShape
     {
         //rectangle draw
-        public override void DrawShape(IGraphics graphics)
+        protected override void DoDrawShape(IGraphics graphics)
         {
             graphics.DrawEllipse(TopLeftPoint, BottomRightPoint);
         }

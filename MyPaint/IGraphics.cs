@@ -51,6 +51,23 @@ namespace MyPaint
         //abstract method to do draw ellipse
         protected abstract void DoDrawEllipse(Point topLeftPoint, Point buttomRightPoint);
 
+        //draw ellipse with template method
+        public Boolean DrawBorder(Point topLeftPoint, Point bottomRightPoint)
+        {
+            try
+            {
+                DoBorderRectangle(topLeftPoint, bottomRightPoint);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //abstract method to do draw border
+        protected abstract void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint);
+
         //clear
         public void ClearCanvas()
         {

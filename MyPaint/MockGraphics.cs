@@ -24,5 +24,10 @@ namespace MyPaint
         protected override void DoDrawRectangle(Point topLeftPoint, Point bottomRightPoint)
         {
         }
+
+        //draw border
+        protected override void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint)
+        {
+        }
     }
 }

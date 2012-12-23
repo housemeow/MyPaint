@@ -25,5 +25,11 @@ namespace MyPaint
         {
             throw new Exception();
         }
+
+        //draw border
+        protected override void DoBorderRectangle(Windows.Foundation.Point topLeftPoint, Windows.Foundation.Point bottomRightPoint)
+        {
+            throw new Exception();
+        }
     }
 }

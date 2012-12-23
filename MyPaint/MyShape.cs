@@ -33,8 +33,24 @@ namespace MyPaint
             }
         }
 
-        //a virtual draw shape method
-        public virtual void DrawShape(IGraphics graphics)
+        public Boolean IsSelected
+        {
+            get;
+            set;
+        }
+
+        //draw shape method
+        public void DrawShape(IGraphics graphics)
+        {
+            DoDrawShape(graphics);
+            if (IsSelected)
+            {
+                graphics.DrawBorder(TopLeftPoint, BottomRightPoint);
+            }
+        }
+
+        //a virutal function to draw shape
+        protected virtual void DoDrawShape(IGraphics graphics)
         {
         }
 
