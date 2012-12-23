@@ -17,22 +17,25 @@ namespace MyPaint
         //pointer state touch down method
         public override void TouchDown(Windows.Foundation.Point point)
         {
-            _pModel.SelecteShape(point);
             base.TouchDown(point);
+            _pModel.SelecteShape(point);
         }
 
         //pointer state touch move method
         public override void TouchMove(Windows.Foundation.Point point)
         {
-            _pModel.MoveSelectedShape(point);
             base.TouchMove(point);
+            if (_isPressed)
+            {
+                _pModel.MoveSelectedShape(point);
+            }
         }
 
         //pointer state touch up method
         public override void TouchUp(Windows.Foundation.Point point)
         {
-            _pModel.StopMovingSelectedShape(point);
             base.TouchUp(point);
+            _pModel.StopMovingSelectedShape(point);
         }
     }
 }

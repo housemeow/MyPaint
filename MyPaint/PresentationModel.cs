@@ -12,11 +12,21 @@ namespace MyPaint
     {
         public delegate void StateChangeHandler();
         public event StateChangeHandler _stateChanged;
+        public delegate void ModelChangeHandler();
+        public event ModelChangeHandler _modelChanged;
+
+        //model changed event
+        public void ChangeModel() {
+            if (_modelChanged != null) {
+                _modelChanged();
+            }
+        }
 
         //constructor of presentation model
         public PresentationModel(PaintModel paintModel)
         {
             PaintModel = paintModel;
+            paintModel._propertyChanged += ChangeModel;
         }
 
         //disable all buttons and using pointer mode

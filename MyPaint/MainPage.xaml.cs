@@ -24,15 +24,13 @@ namespace MyPaint
     public sealed partial class MainPage : Page
     {
         private PresentationModel _pModel;
-        private PaintModel _paintModel;
 
         //constructor of main page
         public MainPage()
         {
             this.InitializeComponent();
-            _paintModel = new PaintModel();
-            _pModel = new PresentationModel(_paintModel);
-            _paintModel._propertyChanged += RefreshCanvas;
+            _pModel = new PresentationModel(new PaintModel());
+            _pModel._modelChanged += RefreshCanvas;
             _pModel._stateChanged += RefreshState;
             RefreshState();
         }
@@ -99,6 +97,19 @@ namespace MyPaint
             PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
             Point point = pointerPoint.Position;
             _pModel.ClickMouse(point);
+            _textBlockTitle.Text = "ReleasePointerOnCanvas";
+        }
+
+        //move pointer on canvas
+        private void MovePointerOnCanvas(object sender, PointerRoutedEventArgs e)
+        {
+            _textBlockTitle.Text = "MovePointerOnCanvas";
+        }
+
+        //press pointer on canvas
+        private void PressPointerOnCanvas(object sender, PointerRoutedEventArgs e)
+        {
+            _textBlockTitle.Text = "PressPointerOnCanvas";
         }
     }
 }
