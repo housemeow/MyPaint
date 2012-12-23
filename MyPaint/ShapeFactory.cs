@@ -14,6 +14,16 @@ namespace MyPaint
     public class ShapeFactory
     {
         //a factory method to get a shape
+        public static MyShape GetShape(PaintModel.ShapeType shapeType)
+        {
+            const String NAMESPACE = "MyPaint.";
+            String className = shapeType.ToString();
+            Type type = Type.GetType(NAMESPACE + className);
+            MyShape shape = (MyShape)Activator.CreateInstance(type);
+            return shape;
+        }
+
+        //a factory method to get a shape
         public static Shape GetShape(PaintModel.ShapeType shapeType, Point startPoint, Point endPoint)
         {
             Shape shape = null;
