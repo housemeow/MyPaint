@@ -83,32 +83,6 @@ namespace MyPaint
             ChangeState();
         }
 
-        //a method for one click adding a shape fixed width and height = 50
-        public void ClickMouse(Point point)
-        {
-
-            //const int WIDTH = 50;
-            //Point newPoint = new Point(point.X + WIDTH, point.Y + WIDTH);
-            //Shape shape = null;
-            //switch (NowDrawMode)
-            //{
-            //    case DrawMode.None:
-            //        break;
-            //    case DrawMode.Pointer:
-            //        break;
-            //    case DrawMode.Ellipse:
-            //        shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse, point, newPoint);
-            //        PaintModel.AddShape(shape);
-            //        break;
-            //    case DrawMode.Rectangle:
-            //        shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle, point, newPoint);
-            //        PaintModel.AddShape(shape);
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-
         //get shapes from paint model
         public List<Shape> GetShapes()
         {

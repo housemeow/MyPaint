@@ -12,6 +12,8 @@ namespace MyPaint
         public event ModelChangedHandler _propertyChanged;
 
         Point startPoint;
+        Point shapeOriginTopLeftPoint;
+        Point shapeOriginBottomRightPoint;
         Shape operationShape;
 
         //drawing shape type 
@@ -78,9 +80,14 @@ namespace MyPaint
                     break;
                 }
             }
-            startPoint = point;
-            RemoveShape(operationShape);
-            ChangeModel();
+            if (operationShape != null)
+            {
+                startPoint = point;
+                shapeOriginTopLeftPoint = operationShape.TopLeftPoint;
+                shapeOriginBottomRightPoint = operationShape.BottomRightPoint;
+                RemoveShape(operationShape);
+                ChangeModel();
+            }
         }
 
         //move selected shape
@@ -92,11 +99,11 @@ namespace MyPaint
                 movePoint.X = point.X - startPoint.X;
                 movePoint.Y = point.Y - startPoint.Y;
                 Point newTopLeftPoint;
-                newTopLeftPoint.X = operationShape.TopLeftPoint.X + movePoint.X;
-                newTopLeftPoint.Y = operationShape.TopLeftPoint.Y + movePoint.Y;
+                newTopLeftPoint.X = shapeOriginTopLeftPoint.X + movePoint.X;
+                newTopLeftPoint.Y = shapeOriginTopLeftPoint.Y + movePoint.Y;
                 Point newBottomRightPoint;
-                newBottomRightPoint.X = operationShape.BottomRightPoint.X + movePoint.X;
-                newBottomRightPoint.Y = operationShape.BottomRightPoint.Y + movePoint.Y;
+                newBottomRightPoint.X = shapeOriginBottomRightPoint.X + movePoint.X;
+                newBottomRightPoint.Y = shapeOriginBottomRightPoint.Y + movePoint.Y;
                 operationShape.SetPoints(newTopLeftPoint, newBottomRightPoint);
                 ChangeModel();
             }
