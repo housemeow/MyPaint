@@ -30,7 +30,6 @@ namespace UnitTestLibrary
             Assert.IsTrue(_pModelProperty.IsRectangleButtonEnable);
             Assert.IsTrue(_pModelProperty.IsEllipseButtonEnable);
             Assert.IsFalse(_pModelProperty.IsDrawing);
-            Assert.AreEqual(PresentationModelProperty.DrawMode.Pointer, _pModelProperty.NowDrawMode);
         }
 
         [TestMethod]
@@ -40,7 +39,6 @@ namespace UnitTestLibrary
             Assert.IsTrue(_pModelProperty.IsPointerButtonEnable);
             Assert.IsTrue(_pModelProperty.IsRectangleButtonEnable);
             Assert.IsTrue(_pModelProperty.IsEllipseButtonEnable);
-            Assert.AreEqual(PresentationModelProperty.DrawMode.None, _pModelProperty.NowDrawMode);
         }
     }
 }

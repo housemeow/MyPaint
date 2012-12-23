@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyPaint
 {
-    class DrawState : State
+    public class DrawState : State
     {
         public MyPaint.PaintModel.ShapeEnum ShapeEnum
         {

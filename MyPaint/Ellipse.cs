@@ -7,7 +7,7 @@ using Windows.Foundation;
 
 namespace MyPaint
 {
-    class Ellipse : Shape
+    public class Ellipse : Shape
     {
         //rectangle draw
         protected override void DoDrawShape(IGraphics graphics)

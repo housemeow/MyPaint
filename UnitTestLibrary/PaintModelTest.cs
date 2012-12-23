@@ -8,7 +8,6 @@ using Windows.Foundation;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Shapes;
 
 namespace UnitTestLibrary
 {
@@ -24,60 +23,48 @@ namespace UnitTestLibrary
         }
 
         [TestMethod]
-        public async Task TestAddShape()
+        public void TestAddShape()
         {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                Line line = new Line();
-                _model.AddShape(line);
-                List<Shape> shapes = _model.Shapes;
-                Assert.AreEqual(1, shapes.Count);
-                Assert.AreEqual(line, shapes[0]);
-            });
+            Rectangle rectangle = new Rectangle();
+            _model.AddShape(rectangle);
+            List<Shape> shapes = _model.Shapes;
+            Assert.AreEqual(1, shapes.Count);
+            Assert.AreEqual(rectangle, shapes[0]);
         }
 
         [TestMethod]
-        public async Task TestRemoveShape()
+        public void TestRemoveShape()
         {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                Rectangle rectangle = new Rectangle();
-                _model.AddShape(rectangle);
-                Assert.IsTrue(_model.Remove(rectangle));
-                Assert.IsFalse(_model.Remove(rectangle));
-            });
+            Rectangle rectangle = new Rectangle();
+            _model.AddShape(rectangle);
+            Assert.IsTrue(_model.Remove(rectangle));
+            Assert.IsFalse(_model.Remove(rectangle));
         }
 
         [TestMethod]
-        public async Task TestClearShape()
+        public void TestClearShape()
         {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                _model.AddShape(new Line());
-                List<Shape> shapes = _model.Shapes;
-                Assert.AreEqual(1, shapes.Count);
-                _model.Clear();
-                Assert.AreEqual(0, shapes.Count);
-            });
+            _model.AddShape(new Rectangle());
+            List<Shape> shapes = _model.Shapes;
+            Assert.AreEqual(1, shapes.Count);
+            _model.Clear();
+            Assert.AreEqual(0, shapes.Count);
         }
 
         [TestMethod]
-        public async Task TestModelChanged()
+        public void TestModelChanged()
         {
-            await AsyncMethod.ExecuteOnUIThread(() =>
+            int triggerTime = 0;
+            _model._propertyChanged += delegate()
             {
-                int triggerTime = 0;
-                _model._propertyChanged += delegate()
-                {
-                    triggerTime++;
-                };
-                _model.AddShape(new Line());
-                Assert.AreEqual(1, triggerTime);
-                _model.Remove(new Line());
-                Assert.AreEqual(2, triggerTime);
-                _model.Clear();
-                Assert.AreEqual(3, triggerTime);
-            });
+                triggerTime++;
+            };
+            _model.AddShape(new Rectangle());
+            Assert.AreEqual(1, triggerTime);
+            _model.Remove(new Rectangle());
+            Assert.AreEqual(2, triggerTime);
+            _model.Clear();
+            Assert.AreEqual(3, triggerTime);
         }
     }
 }

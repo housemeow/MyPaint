@@ -28,7 +28,6 @@ namespace UnitTestLibrary
             Assert.IsFalse(_pModel.IsPointerButtonEnable);
             Assert.IsTrue(_pModel.IsEllipseButtonEnable);
             Assert.IsTrue(_pModel.IsRectangleButtonEnable);
-            Assert.AreEqual(PresentationModelProperty.DrawMode.Pointer, _pModel.NowDrawMode);
         }
 
         [TestMethod]
@@ -38,7 +37,6 @@ namespace UnitTestLibrary
             Assert.IsTrue(_pModel.IsPointerButtonEnable);
             Assert.IsFalse(_pModel.IsEllipseButtonEnable);
             Assert.IsTrue(_pModel.IsRectangleButtonEnable);
-            Assert.AreEqual(PresentationModelProperty.DrawMode.Ellipse, _pModel.NowDrawMode);
         }
 
         [TestMethod]
@@ -48,47 +46,6 @@ namespace UnitTestLibrary
             Assert.IsTrue(_pModel.IsPointerButtonEnable);
             Assert.IsTrue(_pModel.IsEllipseButtonEnable);
             Assert.IsFalse(_pModel.IsRectangleButtonEnable);
-            Assert.AreEqual(PresentationModelProperty.DrawMode.Rectangle, _pModel.NowDrawMode);
-        }
-
-        [TestMethod]
-        public async Task TestClickClearButton()
-        {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                _pModel.ClickEllipseButton();
-                _pModel.ClickMouse(new Point(100, 100));
-                List<Shape> shapes = _pModel.GetShapes();
-                Assert.AreEqual(1, shapes.Count);
-                _pModel.ClickClearButton();
-                Assert.AreEqual(0, shapes.Count);
-            });
-        }
-
-        [TestMethod]
-        public async Task TestMouseClick()
-        {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                Point point = new Point(100, 100);
-                _pModel.NowDrawMode = PresentationModelProperty.DrawMode.Ellipse;
-                _pModel.ClickMouse(point);
-                PaintModel paintModel = _pModel.PaintModel;
-                List<Shape> shapes = paintModel.Shapes;
-                Assert.AreEqual(1, shapes.Count);
-            });
-        }
-
-        [TestMethod]
-        public async Task TestGetShapes()
-        {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                List<Shape> shapes = _pModel.GetShapes();
-                Assert.AreEqual(0, shapes.Count);
-                shapes.Add(new Line());
-                Assert.AreEqual(1, shapes.Count);
-            });
         }
 
         [TestMethod]

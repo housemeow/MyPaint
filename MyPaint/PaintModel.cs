@@ -86,6 +86,7 @@ namespace MyPaint
                 shapeOriginTopLeftPoint = operationShape.TopLeftPoint;
                 shapeOriginBottomRightPoint = operationShape.BottomRightPoint;
                 RemoveShape(operationShape);
+                operationShape.IsSelected = true;
                 ChangeModel();
             }
         }
@@ -115,6 +116,7 @@ namespace MyPaint
             if (operationShape != null)
             {
                 AddShape(operationShape);
+                operationShape.IsSelected = false;
                 operationShape = null;
                 ChangeModel();
             }
