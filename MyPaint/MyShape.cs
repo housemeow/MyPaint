@@ -54,6 +54,12 @@ namespace MyPaint
         {
         }
 
+        //check if point is in shape
+        public virtual Boolean CheckIsSelected(Point point) {
+            Rect rect = new Rect(TopLeftPoint, BottomRightPoint);
+            return rect.Contains(point);
+        }
+
         public Point TopLeftPoint
         {
             get
