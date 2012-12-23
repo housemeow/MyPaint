@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Windows.Foundation;
 using Windows.UI.Xaml.Shapes;
 
 namespace MyPaint
@@ -61,6 +62,35 @@ namespace MyPaint
             {
                 _propertyChanged();
             }
+        }
+
+        //select shape
+        public void SelecteShape(Point point) {
+        }
+
+        //move selected shape
+        public void MoveSelectedShape(Point point)
+        {
+        }
+
+        //stop moving selected shape
+        public void StopMovingSelectedShape(Point point)
+        {
+        }
+
+        //start create shape
+        public void StartCreateShape(Point point)
+        {
+        }
+
+        //resize create shape
+        public void ResizeCreateShape(Point point)
+        {
+        }
+
+        //stop resize shape
+        public void StopResizeShape(Point point)
+        {
         }
     }
 }
