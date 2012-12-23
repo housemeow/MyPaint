@@ -5,9 +5,6 @@ using System.Text;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MyPaint;
 using Windows.Foundation;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using System.Threading.Tasks;
 
 namespace UnitTestLibrary
 {

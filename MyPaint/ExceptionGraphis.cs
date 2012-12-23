@@ -31,5 +31,11 @@ namespace MyPaint
         {
             throw new Exception();
         }
+
+        //clear
+        public override void ClearCanvas()
+        {
+            throw new Exception();
+        }
     }
 }

@@ -76,9 +76,8 @@ namespace MyPaint
                 startPoint = point;
                 shapeOriginTopLeftPoint = operationShape.TopLeftPoint;
                 shapeOriginBottomRightPoint = operationShape.BottomRightPoint;
-                Remove(operationShape);
                 operationShape.IsSelected = true;
-                ChangeModel();
+                Remove(operationShape);
             }
         }
 
@@ -87,18 +86,24 @@ namespace MyPaint
         {
             if (operationShape != null)
             {
-                Point movePoint;
-                movePoint.X = point.X - startPoint.X;
-                movePoint.Y = point.Y - startPoint.Y;
-                Point newTopLeftPoint;
-                newTopLeftPoint.X = shapeOriginTopLeftPoint.X + movePoint.X;
-                newTopLeftPoint.Y = shapeOriginTopLeftPoint.Y + movePoint.Y;
-                Point newBottomRightPoint;
-                newBottomRightPoint.X = shapeOriginBottomRightPoint.X + movePoint.X;
-                newBottomRightPoint.Y = shapeOriginBottomRightPoint.Y + movePoint.Y;
-                operationShape.SetPoints(newTopLeftPoint, newBottomRightPoint);
+                point = SetOperationShapePosition(operationShape, point);
                 ChangeModel();
             }
+        }
+
+        private Point SetOperationShapePosition(Shape shape, Point point)
+        {
+            Point movePoint;
+            movePoint.X = point.X - startPoint.X;
+            movePoint.Y = point.Y - startPoint.Y;
+            Point newTopLeftPoint;
+            newTopLeftPoint.X = shapeOriginTopLeftPoint.X + movePoint.X;
+            newTopLeftPoint.Y = shapeOriginTopLeftPoint.Y + movePoint.Y;
+            Point newBottomRightPoint;
+            newBottomRightPoint.X = shapeOriginBottomRightPoint.X + movePoint.X;
+            newBottomRightPoint.Y = shapeOriginBottomRightPoint.Y + movePoint.Y;
+            shape.SetPoints(newTopLeftPoint, newBottomRightPoint);
+            return point;
         }
 
         //stop moving selected shape
@@ -106,10 +111,10 @@ namespace MyPaint
         {
             if (operationShape != null)
             {
-                Add(operationShape);
+                point = SetOperationShapePosition(operationShape, point);
                 operationShape.IsSelected = false;
+                Add(operationShape);
                 operationShape = null;
-                ChangeModel();
             }
         }
         #endregion
@@ -134,9 +139,9 @@ namespace MyPaint
         //stop resize shape
         public void EndCreateShape(Point point)
         {
+            operationShape.SetPoints(startPoint, point);
             Add(operationShape);
             operationShape = null;
-            ChangeModel();
         }
         #endregion
 

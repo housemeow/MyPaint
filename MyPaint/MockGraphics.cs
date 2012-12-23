@@ -29,5 +29,10 @@ namespace MyPaint
         protected override void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint)
         {
         }
+
+        //clear canvas
+        public override void ClearCanvas()
+        {
+        }
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MyPaint;
 using Windows.Foundation;
-using System.Threading.Tasks;
 
 namespace UnitTestLibrary
 {
@@ -13,18 +12,15 @@ namespace UnitTestLibrary
     public class ShapeFactoryTest
     {
         [TestMethod]
-        public async Task TestShapeFactoryGetShape()
+        public void TestShapeFactoryGetShape()
         {
-            await AsyncMethod.ExecuteOnUIThread(() =>
-            {
-                Point startPoint = new Point(0, 100);
-                Point endPoint = new Point(100, 100);
-                Shape shape;
-                shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse);
-                Assert.AreEqual(typeof(Ellipse), shape.GetType());
-                shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle);
-                Assert.AreEqual(typeof(Rectangle), shape.GetType());
-            });
+            Point startPoint = new Point(0, 100);
+            Point endPoint = new Point(100, 100);
+            Shape shape;
+            shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse);
+            Assert.AreEqual(typeof(Ellipse), shape.GetType());
+            shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle);
+            Assert.AreEqual(typeof(Rectangle), shape.GetType());
         }
     }
 }

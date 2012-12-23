@@ -69,7 +69,7 @@ namespace MyPaint
         protected abstract void DoBorderRectangle(Point topLeftPoint, Point bottomRightPoint);
 
         //clear
-        public void ClearCanvas()
+        public virtual void ClearCanvas()
         {
             _canvas.Children.Clear();
         }
