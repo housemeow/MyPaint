@@ -65,7 +65,7 @@ namespace MyPaint
             get
             {
                 Point topLeftPoint;
-                topLeftPoint.X = _firstPoint.X < _secondPoint.Y ? _firstPoint.X : _secondPoint.X;
+                topLeftPoint.X = _firstPoint.X < _secondPoint.X ? _firstPoint.X : _secondPoint.X;
                 topLeftPoint.Y = _firstPoint.Y < _secondPoint.Y ? _firstPoint.Y : _secondPoint.Y;
                 return topLeftPoint;
             }
@@ -76,7 +76,7 @@ namespace MyPaint
             get
             {
                 Point bottomRightPoint;
-                bottomRightPoint.X = _firstPoint.X > _secondPoint.Y ? _firstPoint.X : _secondPoint.X;
+                bottomRightPoint.X = _firstPoint.X > _secondPoint.X ? _firstPoint.X : _secondPoint.X;
                 bottomRightPoint.Y = _firstPoint.Y > _secondPoint.Y ? _firstPoint.Y : _secondPoint.Y;
                 return bottomRightPoint;
             }

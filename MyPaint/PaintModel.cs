@@ -72,9 +72,10 @@ namespace MyPaint
         {
             foreach (Shape shape in Shapes)
             {
-                if(shape.CheckIsSelected(point)){
+                if (shape.CheckIsSelected(point))
+                {
                     operationShape = shape;
-                    break;  
+                    break;
                 }
             }
             startPoint = point;
@@ -85,25 +86,31 @@ namespace MyPaint
         //move selected shape
         public void MoveSelectedShape(Point point)
         {
-            Point movePoint;// = point - startPoint;
-            movePoint.X = point.X - startPoint.X;
-            movePoint.Y = point.Y - startPoint.Y;
-            Point newTopLeftPoint;
-            newTopLeftPoint.X = operationShape.TopLeftPoint.X + movePoint.X;
-            newTopLeftPoint.Y = operationShape.TopLeftPoint.Y + movePoint.Y;
-            Point newBottomRightPoint;
-            newBottomRightPoint.X = operationShape.BottomRightPoint.X + movePoint.X;
-            newBottomRightPoint.Y = operationShape.BottomRightPoint.Y + movePoint.Y;
-            operationShape.SetPoints(newTopLeftPoint, newBottomRightPoint);
-            ChangeModel();
+            if (operationShape != null)
+            {
+                Point movePoint;// = point - startPoint;
+                movePoint.X = point.X - startPoint.X;
+                movePoint.Y = point.Y - startPoint.Y;
+                Point newTopLeftPoint;
+                newTopLeftPoint.X = operationShape.TopLeftPoint.X + movePoint.X;
+                newTopLeftPoint.Y = operationShape.TopLeftPoint.Y + movePoint.Y;
+                Point newBottomRightPoint;
+                newBottomRightPoint.X = operationShape.BottomRightPoint.X + movePoint.X;
+                newBottomRightPoint.Y = operationShape.BottomRightPoint.Y + movePoint.Y;
+                operationShape.SetPoints(newTopLeftPoint, newBottomRightPoint);
+                ChangeModel();
+            }
         }
 
         //stop moving selected shape
         public void StopMovingSelectedShape(Point point)
         {
-            AddShape(operationShape);
-            operationShape = null;
-            ChangeModel();
+            if (operationShape != null)
+            {
+                AddShape(operationShape);
+                operationShape = null;
+                ChangeModel();
+            }
         }
 
         //start create shape
