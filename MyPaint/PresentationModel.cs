@@ -59,11 +59,11 @@ namespace MyPaint
                 case DrawMode.Pointer:
                     break;
                 case DrawMode.Ellipse:
-                    shape = ShapeFactory.GetShape(PaintModel.ShapeType.Ellipse, point, newPoint);
+                    shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse, point, newPoint);
                     PaintModel.AddShape(shape);
                     break;
                 case DrawMode.Rectangle:
-                    shape = ShapeFactory.GetShape(PaintModel.ShapeType.Rectangle, point, newPoint);
+                    shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle, point, newPoint);
                     PaintModel.AddShape(shape);
                     break;
                 default:
@@ -90,6 +90,42 @@ namespace MyPaint
         public void ClickClearButton()
         {
             PaintModel.Clear();
+        }
+
+        //select shape
+        public void SelecteShape(Point point)
+        {
+            PaintModel.SelecteShape(point);
+        }
+
+        //move selected shape
+        public void MoveSelectedShape(Point point)
+        {
+            PaintModel.MoveSelectedShape(point);
+        }
+
+        //stop moving selected shape
+        public void StopMovingSelectedShape(Point point)
+        {
+            PaintModel.StopMovingSelectedShape(point);
+        }
+
+        //start create shape
+        public void StartCreateShape(MyPaint.PaintModel.ShapeEnum shapeEnum, Point point)
+        {
+            PaintModel.StartCreateShape(shapeEnum, point);
+        }
+
+        //resize create shape
+        public void ResizeCreateShape(Point point)
+        {
+            PaintModel.ResizeCreateShape(point);
+        }
+
+        //stop resize shape
+        public void StopResizeShape(Point point)
+        {
+            PaintModel.StopResizeShape(point);
         }
     }
 }

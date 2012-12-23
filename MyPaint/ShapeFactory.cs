@@ -14,7 +14,7 @@ namespace MyPaint
     public class ShapeFactory
     {
         //a factory method to get a shape
-        public static MyShape GetShape(PaintModel.ShapeType shapeType)
+        public static MyShape GetShape(PaintModel.ShapeEnum shapeType)
         {
             const String NAMESPACE = "MyPaint.";
             String className = shapeType.ToString();
@@ -24,19 +24,19 @@ namespace MyPaint
         }
 
         //a factory method to get a shape
-        public static Shape GetShape(PaintModel.ShapeType shapeType, Point startPoint, Point endPoint)
+        public static Shape GetShape(PaintModel.ShapeEnum shapeType, Point startPoint, Point endPoint)
         {
             Shape shape = null;
             switch (shapeType)
             {
-                case PaintModel.ShapeType.Line:
+                case PaintModel.ShapeEnum.Line:
                     Line line = GetLine(ref startPoint, ref endPoint);
                     shape = line;
                     break;
-                case PaintModel.ShapeType.Ellipse:
+                case PaintModel.ShapeEnum.Ellipse:
                     GetEllipse(ref startPoint, ref endPoint, ref shape);
                     break;
-                case PaintModel.ShapeType.Rectangle:
+                case PaintModel.ShapeEnum.Rectangle:
                     GetRectangle(ref startPoint, ref endPoint, ref shape);
                     break;
                 default:

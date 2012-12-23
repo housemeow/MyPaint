@@ -12,8 +12,12 @@ namespace MyPaint
         public delegate void ModelChangedHandler();
         public event ModelChangedHandler _propertyChanged;
 
+        Point startPoint;
+        MyShape operationShape;
+
+
         //drawing shape type 
-        public enum ShapeType
+        public enum ShapeEnum
         {
             None,
             Line,
@@ -25,6 +29,14 @@ namespace MyPaint
         public PaintModel()
         {
             Shapes = new List<Shape>();
+            MyShapes = new List<MyShape>();
+            operationShape = null;
+        }
+
+        public List<MyShape> MyShapes
+        {
+            get;
+            set;
         }
 
         public List<Shape> Shapes
@@ -65,32 +77,83 @@ namespace MyPaint
         }
 
         //select shape
-        public void SelecteShape(Point point) {
+        public void SelecteShape(Point point)
+        {
+            foreach (MyShape shape in MyShapes)
+            {
+                if(shape.CheckIsSelected(point)){
+                    operationShape = shape;
+                    break;  
+                }
+            }
+            startPoint = point;
+            RemoveShape(operationShape);
+            
         }
 
         //move selected shape
         public void MoveSelectedShape(Point point)
         {
+            Point movePoint;// = point - startPoint;
+            movePoint.X = point.X - startPoint.X;
+            movePoint.Y = point.Y - startPoint.Y;
+            Point newTopLeftPoint;
+            newTopLeftPoint.X = operationShape.TopLeftPoint.X + movePoint.X;
+            newTopLeftPoint.Y = operationShape.TopLeftPoint.Y + movePoint.Y;
+            Point newBottomRightPoint;
+            newBottomRightPoint.X = operationShape.BottomRightPoint.X + movePoint.X;
+            newBottomRightPoint.Y = operationShape.BottomRightPoint.Y + movePoint.Y;
+            operationShape.SetPoints(newTopLeftPoint, newBottomRightPoint);
         }
 
         //stop moving selected shape
         public void StopMovingSelectedShape(Point point)
         {
+            AddShape(operationShape);
+            operationShape = null;
         }
 
         //start create shape
-        public void StartCreateShape(Point point)
+        public void StartCreateShape(ShapeEnum shapeEnum, Point point)
         {
+            operationShape = ShapeFactory.GetShape(shapeEnum);
+            operationShape.SetPoints(point, point);
+            startPoint = point;
         }
 
         //resize create shape
         public void ResizeCreateShape(Point point)
         {
+            operationShape.SetPoints(startPoint, point);
         }
 
         //stop resize shape
         public void StopResizeShape(Point point)
         {
+            AddShape(operationShape);
+            operationShape = null;
+        }
+
+        //draw Shapes
+        public void DrawShapes(IGraphics graphics)
+        {
+            foreach (MyShape shape in MyShapes)
+            {
+                shape.DrawShape(graphics);
+            }
+            operationShape.DrawShape(graphics);
+        }
+
+        //remove shape
+        private void RemoveShape(MyShape shape)
+        {
+            MyShapes.Remove(shape);
+        }
+
+        //add shape
+        private void AddShape(MyShape shape)
+        {
+            MyShapes.Add(shape);
         }
     }
 }

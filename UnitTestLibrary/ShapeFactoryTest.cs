@@ -21,11 +21,11 @@ namespace UnitTestLibrary
                 Point startPoint = new Point(0, 100);
                 Point endPoint = new Point(100, 100);
                 Shape shape;
-                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Ellipse, startPoint, endPoint);
+                shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Ellipse, startPoint, endPoint);
                 Assert.AreEqual(typeof(Ellipse), shape.GetType());
-                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Line, startPoint, endPoint);
+                shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Line, startPoint, endPoint);
                 Assert.AreEqual(typeof(Line), shape.GetType());
-                shape = ShapeFactory.GetShape(PaintModel.ShapeType.Rectangle, startPoint, endPoint);
+                shape = ShapeFactory.GetShape(PaintModel.ShapeEnum.Rectangle, startPoint, endPoint);
                 Assert.AreEqual(typeof(Rectangle), shape.GetType());
             });
         }
