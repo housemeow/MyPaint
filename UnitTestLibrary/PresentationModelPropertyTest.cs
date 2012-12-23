@@ -14,13 +14,13 @@ namespace UnitTestLibrary
         private PresentationModelProperty _pModelProperty;
 
         [TestInitialize]
-        public void InitializePresentationModelProperty()
+        public void Initialize()
         {
             _pModelProperty = new PresentationModelProperty();
         }
 
         [TestMethod]
-        public void TestPresentationModelPropertyConstructor()
+        public void TestConstructor()
         {
             Assert.IsFalse(_pModelProperty.IsPointerButtonEnable);
             Assert.IsTrue(_pModelProperty.IsRectangleButtonEnable);
@@ -28,7 +28,7 @@ namespace UnitTestLibrary
         }
 
         [TestMethod]
-        public void TestPresentationModelPropertyEnableButtons()
+        public void TestEnableButtons()
         {
             _pModelProperty.EnableButtons();
             Assert.IsTrue(_pModelProperty.IsPointerButtonEnable);

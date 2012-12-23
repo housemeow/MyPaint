@@ -23,7 +23,7 @@ namespace UnitTestLibrary
         }
 
         [TestMethod]
-        public void TesstSetPointsByList()
+        public void TestSetPointsByList()
         {
             Shape shape = new Shape();
             List<Point> points = new List<Point>();
@@ -95,7 +95,7 @@ namespace UnitTestLibrary
         }
 
         [TestMethod]
-        public void TeEllipseCheckIsSelected()
+        public void TestEllipseCheckIsSelected()
         {
             Shape shape = new Ellipse();
             shape.SetPoints(new Point(50, 50), new Point(100, 100));

@@ -12,7 +12,7 @@ namespace UnitTestLibrary
     public class ShapeFactoryTest
     {
         [TestMethod]
-        public void TestShapeFactoryGetShape()
+        public void TestGetShape()
         {
             Point startPoint = new Point(0, 100);
             Point endPoint = new Point(100, 100);
