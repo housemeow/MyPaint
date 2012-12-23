@@ -21,10 +21,10 @@ namespace MyPaint
             Point centerPoint;
             centerPoint.X = (BottomRightPoint.X + TopLeftPoint.X) / 2;
             centerPoint.Y = (BottomRightPoint.Y + TopLeftPoint.Y) / 2;
-            double halfWidth = (TopLeftPoint.X- BottomRightPoint.X)/2;
-            double halfHeight = (TopLeftPoint.Y-BottomRightPoint.Y)/2;
+            double halfWidth = (TopLeftPoint.X - BottomRightPoint.X) / 2;
+            double halfHeight = (TopLeftPoint.Y - BottomRightPoint.Y) / 2;
             double xRadius = Math.Pow((point.X - centerPoint.X) / halfWidth, 2);
-            double yRadius = Math.Pow((point.Y - centerPoint.Y)/halfHeight, 2);
+            double yRadius = Math.Pow((point.Y - centerPoint.Y) / halfHeight, 2);
             return xRadius + yRadius <= 1;
         }
     }

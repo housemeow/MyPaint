@@ -26,7 +26,7 @@ namespace UnitTestLibrary
         public void TestAddShape()
         {
             Rectangle rectangle = new Rectangle();
-            _model.AddShape(rectangle);
+            _model.Add(rectangle);
             List<Shape> shapes = _model.Shapes;
             Assert.AreEqual(1, shapes.Count);
             Assert.AreEqual(rectangle, shapes[0]);
@@ -36,7 +36,7 @@ namespace UnitTestLibrary
         public void TestRemoveShape()
         {
             Rectangle rectangle = new Rectangle();
-            _model.AddShape(rectangle);
+            _model.Add(rectangle);
             Assert.IsTrue(_model.Remove(rectangle));
             Assert.IsFalse(_model.Remove(rectangle));
         }
@@ -44,7 +44,7 @@ namespace UnitTestLibrary
         [TestMethod]
         public void TestClearShape()
         {
-            _model.AddShape(new Rectangle());
+            _model.Add(new Rectangle());
             List<Shape> shapes = _model.Shapes;
             Assert.AreEqual(1, shapes.Count);
             _model.Clear();
@@ -59,7 +59,7 @@ namespace UnitTestLibrary
             {
                 triggerTime++;
             };
-            _model.AddShape(new Rectangle());
+            _model.Add(new Rectangle());
             Assert.AreEqual(1, triggerTime);
             _model.Remove(new Rectangle());
             Assert.AreEqual(2, triggerTime);

@@ -27,16 +27,11 @@ namespace MyPaint
         //using a list to set points
         public virtual void SetPoints(List<Point> points)
         {
-            if (points.Count == 2)
+            const int NORMAL_POINT_COUNT = 2;
+            if (points.Count == NORMAL_POINT_COUNT)
             {
                 SetPoints(points[0], points[1]);
             }
-        }
-
-        public Boolean IsSelected
-        {
-            get;
-            set;
         }
 
         //draw shape method
@@ -55,9 +50,16 @@ namespace MyPaint
         }
 
         //check if point is in shape
-        public virtual Boolean CheckIsSelected(Point point) {
+        public virtual Boolean CheckIsSelected(Point point)
+        {
             Rect rect = new Rect(TopLeftPoint, BottomRightPoint);
             return rect.Contains(point);
+        }
+
+        public Boolean IsSelected
+        {
+            get;
+            set;
         }
 
         public Point TopLeftPoint

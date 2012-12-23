@@ -10,7 +10,6 @@ namespace MyPaint
     {
         public delegate void ModelChangedHandler();
         public event ModelChangedHandler _propertyChanged;
-
         Point startPoint;
         Point shapeOriginTopLeftPoint;
         Point shapeOriginBottomRightPoint;
@@ -39,16 +38,9 @@ namespace MyPaint
         }
 
         //add a shape into shape list
-        public void AddShape(Shape shape)
+        public void Add(Shape shape)
         {
             Shapes.Add(shape);
-            ChangeModel();
-        }
-
-        //clear shapes
-        public void Clear()
-        {
-            Shapes.Clear();
             ChangeModel();
         }
 
@@ -60,15 +52,14 @@ namespace MyPaint
             return removeResult;
         }
 
-        //model changed event
-        private void ChangeModel()
+        //clear shapes
+        public void Clear()
         {
-            if (_propertyChanged != null)
-            {
-                _propertyChanged();
-            }
+            Shapes.Clear();
+            ChangeModel();
         }
 
+        #region SelectStateMethod
         //select shape
         public void SelecteShape(Point point)
         {
@@ -85,7 +76,7 @@ namespace MyPaint
                 startPoint = point;
                 shapeOriginTopLeftPoint = operationShape.TopLeftPoint;
                 shapeOriginBottomRightPoint = operationShape.BottomRightPoint;
-                RemoveShape(operationShape);
+                Remove(operationShape);
                 operationShape.IsSelected = true;
                 ChangeModel();
             }
@@ -96,7 +87,7 @@ namespace MyPaint
         {
             if (operationShape != null)
             {
-                Point movePoint;// = point - startPoint;
+                Point movePoint;
                 movePoint.X = point.X - startPoint.X;
                 movePoint.Y = point.Y - startPoint.Y;
                 Point newTopLeftPoint;
@@ -111,17 +102,19 @@ namespace MyPaint
         }
 
         //stop moving selected shape
-        public void StopMovingSelectedShape(Point point)
+        public void EndSelecteShape(Point point)
         {
             if (operationShape != null)
             {
-                AddShape(operationShape);
+                Add(operationShape);
                 operationShape.IsSelected = false;
                 operationShape = null;
                 ChangeModel();
             }
         }
+        #endregion
 
+        #region CreateStateMethod
         //start create shape
         public void StartCreateShape(ShapeEnum shapeEnum, Point point)
         {
@@ -132,19 +125,20 @@ namespace MyPaint
         }
 
         //resize create shape
-        public void ResizeCreateShape(Point point)
+        public void ResizeShape(Point point)
         {
             operationShape.SetPoints(startPoint, point);
             ChangeModel();
         }
 
         //stop resize shape
-        public void StopResizeShape(Point point)
+        public void EndCreateShape(Point point)
         {
-            AddShape(operationShape);
+            Add(operationShape);
             operationShape = null;
             ChangeModel();
         }
+        #endregion
 
         //draw Shapes
         public void DrawShapes(IGraphics graphics)
@@ -160,10 +154,13 @@ namespace MyPaint
             }
         }
 
-        //remove shape
-        private void RemoveShape(Shape shape)
+        //model changed event
+        private void ChangeModel()
         {
-            Shapes.Remove(shape);
+            if (_propertyChanged != null)
+            {
+                _propertyChanged();
+            }
         }
     }
 }

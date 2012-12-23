@@ -14,7 +14,6 @@ namespace MyPaint
             IsPointerButtonEnable = false;
             IsEllipseButtonEnable = true;
             IsRectangleButtonEnable = true;
-            IsDrawing = false;
         }
 
         public bool IsPointerButtonEnable
@@ -30,12 +29,6 @@ namespace MyPaint
         }
 
         public bool IsEllipseButtonEnable
-        {
-            get;
-            set;
-        }
-
-        public bool IsDrawing
         {
             get;
             set;

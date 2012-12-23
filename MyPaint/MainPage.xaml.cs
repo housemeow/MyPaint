@@ -38,7 +38,6 @@ namespace MyPaint
         //click close button and exit the application
         private void ClickButtonClose(object sender, RoutedEventArgs e)
         {
-            _canvas.Children.Clear();
             App.Current.Exit();
         }
 
@@ -46,6 +45,53 @@ namespace MyPaint
         private void ClickButtonPointer(object sender, RoutedEventArgs e)
         {
             _pModel.ClickPointerButton();
+        }
+
+        //click ellipse button
+        private void ClickButtonEllipse(object sender, RoutedEventArgs e)
+        {
+            _pModel.ClickEllipseButton();
+        }
+
+        //click rectangle button
+        private void ClickButtonRectangle(object sender, RoutedEventArgs e)
+        {
+            _pModel.ClickRectangleButton();
+        }
+
+        //click clear button
+        private void ClickButtonClear(object sender, RoutedEventArgs e)
+        {
+            _pModel.ClickClearButton();
+        }
+
+        //press pointer on canvas
+        private void PressPointerOnCanvas(object sender, PointerRoutedEventArgs e)
+        {
+            Point point = GetCanvasPoint(e);
+            _pModel.PressPointer(point);
+        }
+
+        //move pointer on canvas
+        private void MovePointerOnCanvas(object sender, PointerRoutedEventArgs e)
+        {
+            Point point = GetCanvasPoint(e);
+            _pModel.MovePointer(point);
+        }
+
+        //release point
+        private void ReleasePointerOnCanvas(object sender, PointerRoutedEventArgs e)
+        {
+            Point point = GetCanvasPoint(e);
+            _pModel.ReleasePointer(point);
+        }
+
+        //get canvas point
+        private Point GetCanvasPoint(PointerRoutedEventArgs e)
+        {
+            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
+            Point point = pointerPoint.Position;
+            return point;
         }
 
         //refresh presentation state
@@ -67,52 +113,6 @@ namespace MyPaint
             _canvas.Clip = myRectangleGeometry;
             IGraphics graphics = new WindowsStoreGraphics(_canvas);
             _pModel.DrawShapes(graphics);
-        }
-
-        //click ellipse button
-        private void ClickButtonEllipse(object sender, RoutedEventArgs e)
-        {
-            _pModel.ClickEllipseButton();
-        }
-
-        //click rectangle button
-        private void ClickButtonRectangle(object sender, RoutedEventArgs e)
-        {
-            _pModel.ClickRectangleButton();
-        }
-
-        //click clear button
-        private void ClickButtonClear(object sender, RoutedEventArgs e)
-        {
-            _pModel.ClickClearButton();
-        }
-
-        //release point
-        private void ReleasePointerOnCanvas(object sender, PointerRoutedEventArgs e)
-        {
-            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
-            Point point = pointerPoint.Position;
-            //_pModel.ClickMouse(point);
-            _pModel.ReleasePointer(point);
-            _textBlockTitle.Text = "ReleasePointerOnCanvas";
-        }
-
-        //move pointer on canvas
-        private void MovePointerOnCanvas(object sender, PointerRoutedEventArgs e)
-        {
-            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
-            Point point = pointerPoint.Position;
-            _pModel.MovePointer(point);
-            _textBlockTitle.Text = "MovePointerOnCanvas";
-        }
-
-        //press pointer on canvas
-        private void PressPointerOnCanvas(object sender, PointerRoutedEventArgs e)
-        {
-            PointerPoint pointerPoint = e.GetCurrentPoint(_canvas);
-            Point point = pointerPoint.Position;
-            _pModel.PressPointer(point);
-            _textBlockTitle.Text = "PressPointerOnCanvas";
         }
     }
 }

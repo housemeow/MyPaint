@@ -21,18 +21,18 @@ namespace MyPaint
         }
 
         //a virtual function touch down
-        public virtual void TouchDown(Point point)
+        public virtual void PressPointer(Point point)
         {
             _isPressed = true;
         }
 
         // a virtual function touch move
-        public virtual void TouchMove(Point point)
+        public virtual void MovePointer(Point point)
         {
         }
 
         //a virtual function touch up
-        public virtual void TouchUp(Point point)
+        public virtual void ReleasePointer(Point point)
         {
             _isPressed = false;
         }

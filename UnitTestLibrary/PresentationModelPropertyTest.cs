@@ -29,7 +29,6 @@ namespace UnitTestLibrary
             Assert.IsFalse(_pModelProperty.IsPointerButtonEnable);
             Assert.IsTrue(_pModelProperty.IsRectangleButtonEnable);
             Assert.IsTrue(_pModelProperty.IsEllipseButtonEnable);
-            Assert.IsFalse(_pModelProperty.IsDrawing);
         }
 
         [TestMethod]

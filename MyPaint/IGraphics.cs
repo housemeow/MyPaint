@@ -49,7 +49,7 @@ namespace MyPaint
         }
 
         //abstract method to do draw ellipse
-        protected abstract void DoDrawEllipse(Point topLeftPoint, Point buttomRightPoint);
+        protected abstract void DoDrawEllipse(Point topLeftPoint, Point bottomRightPoint);
 
         //draw ellipse with template method
         public Boolean DrawBorder(Point topLeftPoint, Point bottomRightPoint)

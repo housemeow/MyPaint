@@ -15,13 +15,13 @@ namespace MyPaint
         }
 
         //draw ellipse
-        protected override void DoDrawEllipse(Windows.Foundation.Point topLeftPoint, Windows.Foundation.Point buttomRightPoint)
+        protected override void DoDrawEllipse(Windows.Foundation.Point topLeftPoint, Windows.Foundation.Point bottomRightPoint)
         {
             throw new Exception();
         }
 
         //draw rectangle
-        protected override void DoDrawRectangle(Windows.Foundation.Point topLeftPoint, Windows.Foundation.Point buttomRightPoint)
+        protected override void DoDrawRectangle(Windows.Foundation.Point topLeftPoint, Windows.Foundation.Point bottomRightPoint)
         {
             throw new Exception();
         }

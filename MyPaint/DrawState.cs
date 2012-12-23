@@ -21,27 +21,27 @@ namespace MyPaint
         }
 
         //pointer state touch down method
-        public override void TouchDown(Windows.Foundation.Point point)
+        public override void PressPointer(Windows.Foundation.Point point)
         {
-            base.TouchDown(point);
+            base.PressPointer(point);
             _pModel.StartCreateShape(ShapeEnum, point);
         }
 
         //pointer state touch move method
-        public override void TouchMove(Windows.Foundation.Point point)
+        public override void MovePointer(Windows.Foundation.Point point)
         {
-            base.TouchMove(point);
+            base.MovePointer(point);
             if (_isPressed)
             {
-                _pModel.ResizeCreateShape(point);
+                _pModel.ResizeShape(point);
             }
         }
 
         //pointer state touch up method
-        public override void TouchUp(Windows.Foundation.Point point)
+        public override void ReleasePointer(Windows.Foundation.Point point)
         {
-            base.TouchUp(point);
-            _pModel.StopResizeShape(point);
+            base.ReleasePointer(point);
+            _pModel.EndCreateShape(point);
         }
     }
 }

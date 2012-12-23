@@ -14,42 +14,14 @@ namespace MyPaint
         public event StateChangeHandler _stateChanged;
         public delegate void ModelChangeHandler();
         public event ModelChangeHandler _modelChanged;
-
         State _state;
-
-        //model changed event
-        public void ChangeModel()
-        {
-            if (_modelChanged != null)
-            {
-                _modelChanged();
-            }
-        }
 
         //constructor of presentation model
         public PresentationModel(PaintModel paintModel)
         {
             PaintModel = paintModel;
             paintModel._propertyChanged += ChangeModel;
-            _state = new PointerState(this);
-        }
-        
-        //press pointer
-        public void PressPointer(Point point)
-        {
-            _state.TouchDown(point);
-        }
-
-        //move pointer
-        public void MovePointer(Point point)
-        {
-            _state.TouchMove(point);
-        }
-
-        //release pointer
-        public void ReleasePointer(Point point)
-        {
-            _state.TouchUp(point);
+            _state = new PointerState(this);//default state
         }
 
         //disable all buttons and using pointer mode
@@ -83,27 +55,33 @@ namespace MyPaint
             ChangeState();
         }
 
-        //get shapes from paint model
-        public List<Shape> GetShapes()
-        {
-            return PaintModel.Shapes;
-        }
-
-        //state changed event trigger
-        private void ChangeState()
-        {
-            if (_stateChanged != null)
-            {
-                _stateChanged();
-            }
-        }
-
         //click clear button
         public void ClickClearButton()
         {
             PaintModel.Clear();
         }
 
+        #region PointerRegion
+        //press pointer
+        public void PressPointer(Point point)
+        {
+            _state.PressPointer(point);
+        }
+
+        //move pointer
+        public void MovePointer(Point point)
+        {
+            _state.MovePointer(point);
+        }
+
+        //release pointer
+        public void ReleasePointer(Point point)
+        {
+            _state.ReleasePointer(point);
+        }
+        #endregion
+
+        #region PointerMethod
         //select shape
         public void SelecteShape(Point point)
         {
@@ -117,11 +95,13 @@ namespace MyPaint
         }
 
         //stop moving selected shape
-        public void StopMovingSelectedShape(Point point)
+        public void EndSelecteShape(Point point)
         {
-            PaintModel.StopMovingSelectedShape(point);
+            PaintModel.EndSelecteShape(point);
         }
+        #endregion
 
+        #region DrawModeMethod
         //start create shape
         public void StartCreateShape(MyPaint.PaintModel.ShapeEnum shapeEnum, Point point)
         {
@@ -129,21 +109,40 @@ namespace MyPaint
         }
 
         //resize create shape
-        public void ResizeCreateShape(Point point)
+        public void ResizeShape(Point point)
         {
-            PaintModel.ResizeCreateShape(point);
+            PaintModel.ResizeShape(point);
         }
 
         //stop resize shape
-        public void StopResizeShape(Point point)
+        public void EndCreateShape(Point point)
         {
-            PaintModel.StopResizeShape(point);
+            PaintModel.EndCreateShape(point);
         }
+        #endregion
 
         //draw all shapes
         public void DrawShapes(IGraphics graphics)
         {
             PaintModel.DrawShapes(graphics);
+        }
+
+        //state changed event trigger
+        private void ChangeState()
+        {
+            if (_stateChanged != null)
+            {
+                _stateChanged();
+            }
+        }
+
+        //model changed event
+        public void ChangeModel()
+        {
+            if (_modelChanged != null)
+            {
+                _modelChanged();
+            }
         }
     }
 }
